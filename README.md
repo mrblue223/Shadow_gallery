@@ -17,3 +17,51 @@
     Order History: View past purchases with details on items, total cost, and order date.
 
     Responsive Design: The application's layout is designed to be fully responsive for all device sizes.
+
+## ⚙️ How to Configure the App
+
+This application relies on Google's Firebase for backend services, including Authentication, Firestore for the database, and Storage for profile images.
+
+## 1. Firebase Project Setup
+
+    Create a Firebase Project: Go to the Firebase Console and create a new project.
+
+    Enable Services: In the Firebase Console, enable the following services:
+
+        Authentication: Enable Email/Password Sign-in.
+
+        Firestore Database: Start a new database in "production mode."
+
+        Cloud Storage: Set up Cloud Storage to handle profile picture uploads.
+
+    Get Your Config: In your project settings, find and copy your Firebase SDK configuration object. It will look similar to this:
+    JavaScript
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    Create Firestore Collections: You will need to create the following collections in Firestore for the app to function correctly:
+
+        products: Stores all product information.
+
+        reviews: Stores user reviews for each product.
+
+        users: Stores user data, including wishlists.
+
+## 2. Local Configuration
+
+    Clone the Repository: Clone the project to your local machine.
+
+    Install Dependencies: Navigate to the project directory and install the required packages:
+    Bash
+
+    npm install
+
+    Add Firebase Config: In your src/ directory, create a new file named firebase.js (or similar) and paste your Firebase configuration into it. This file will be responsible for initializing Firebase in your application.
+
