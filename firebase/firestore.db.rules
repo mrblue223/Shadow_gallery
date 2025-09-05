@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Define the admin UID as a function for reusability
+    function isAdmin() {
+      return request.auth.uid == 'ADMIN_UID';
+    }
+
+    // Products Collection
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Users Collection
+    // Allow authenticated users to read and write to their own document
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+
+    // Orders Collection
+    // Allow authenticated users to create and read their own orders
+    match /orders/{orderId} {
+      allow read: if request.auth.uid == resource.data.userId || isAdmin();
+      allow create: if request.auth.uid != null && request.auth.uid == request.resource.data.userId;
+      allow update, delete: if false;
+    }
+
+    // Reviews Collection
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create, delete: if isAdmin();
+    }
+
+    // NEW: Discounts Collection
+    // Allow only the admin to create and delete discount codes
+    match /discounts/{discountId} {
+      allow create, delete: if isAdmin();
+      allow read: if true; // Allows anyone to read discounts (to check if a code is valid)
+      allow update: if false; // Discounts should not be updated once created
+    }
+
+    // Removed the wishlist collection since the wishlist items are now stored in the user's document
+  }
+}
