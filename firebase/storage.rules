@@ -1,1 +1,29 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Allows anyone to read all files in storage.
+    match /{allPaths=**} {
+      allow read: if true;
+    }
 
+    // This rule allows a user with the specified hardcoded UID to write
+    // to the profile picture folder.
+    match /profile_pictures/{userId}/{fileName} {
+      allow write: if request.auth.uid == 'ADMIN.UID';
+    }
+
+    // These rules will allow an admin with the hardcoded UID to write
+    // to the product and images folders.
+    function isAdmin() {
+      return request.auth.uid == 'ADMIN.UID';
+    }
+
+    match /products/{productId}/{fileName} {
+      allow write: if isAdmin();
+    }
+
+    match /images/{fileName} {
+      allow write: if isAdmin();
+    }
+  }
+}
