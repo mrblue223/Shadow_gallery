@@ -1,1 +1,15 @@
-temp
+# Dependency directory
+node_modules/
+
+# Log files
+*.log
+
+# Local certificates
+*.pem
+
+# macOS hidden files
+.DS_Store
+
+# IDE and other system files
+.vscode/ # If you are using VS Code
+.idea/ # If you are using JetBrains IDEs
