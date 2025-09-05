@@ -73,3 +73,13 @@ Bash
     npm run dev
 
 This will run the app in development mode. Open http://localhost:3000 to view it in your browser.
+
+📜 Rules & Usage
+
+    Public Access: Users can view the gallery of products without needing to log in.
+
+    User-Only Features: To use features like adding products to a wishlist, writing reviews, and viewing orders, users must be logged in.
+
+    Account Management: In the profile section, users must provide their current password to update their email address or password for security reasons.
+
+    Admin Access: The app includes a hardcoded UID which after setting up "Athentication" in firebase copy the UID into your rules,
