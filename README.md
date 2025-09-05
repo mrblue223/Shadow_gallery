@@ -65,3 +65,11 @@ This application relies on Google's Firebase for backend services, including Aut
 
     Add Firebase Config: In your src/ directory, create a new file named firebase.js (or similar) and paste your Firebase configuration into it. This file will be responsible for initializing Firebase in your application.
 
+## ▶️ How to Start It
+
+Once you have configured the Firebase project and installed the dependencies, you can start the development server.
+Bash
+
+    npm run dev
+
+This will run the app in development mode. Open http://localhost:3000 to view it in your browser.
